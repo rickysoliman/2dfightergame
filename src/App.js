@@ -1,5 +1,5 @@
 import './App.css';
-import Matrix from './components/matrix/Matrix';
+import Matrix from './components/Matrix';
 
 function App() {
   return (
