@@ -17,6 +17,26 @@ export default class Character extends Component {
         };
 
         this.move = this.move.bind(this);
+        this.keyHandling = this.keyHandling.bind(this);
+    }
+
+    keyHandling(e) {
+        console.log(e.keyCode);
+        // right: 39
+        if (e.keyCode === 39) {
+            this.move('right');
+        // left: 37
+        } else if (e.keyCode === 37) {
+            this.move('left');
+        }
+    }
+
+    componentDidMount() {
+        window.addEventListener('keydown', this.keyHandling);
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('keydown', this.keyHandling);
     }
 
     move(dir) {
@@ -26,8 +46,10 @@ export default class Character extends Component {
                 j: this.state.position.y
             };
         if (dir === 'left') {
+            if (newPosition.y === 0) return null;
             newPosition.y--;
         } else {
+            if (newPosition.y === 20) return null;
             newPosition.y++;
         }
         this.props.move(newPosition, prev);
@@ -36,11 +58,7 @@ export default class Character extends Component {
 
     render() {
         return (
-            <>
-                <Char id={1}/>
-                <button onClick={() => this.move('left')}>{'<'}</button>
-                <button onClick={() => this.move('right')}>{'>'}</button>
-            </>
+            <Char/>
         );
     }
 }
