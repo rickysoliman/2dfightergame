@@ -3,8 +3,8 @@ import styled from 'styled-components';
 
 const Element = styled.span`
     display: inline-block;
-    width: 64px;
-    height: 64px;
+    width: 128px;
+    height: 128px;
     background-color: ${p => p.id === 0 ? 'F0FFFF' : 'black'}
 `;
 
